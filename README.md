@@ -22,7 +22,7 @@ We built this during an internship to make productivity a little more fun, chaot
 
 ## Demo
 
-Live now → [**watermelonverse.vercel.app**](https://watermelonverse.vercel.app/) 🔥  
+Live now → [**watermelonverse.vercel.app**](https://watermelonverse.vercel.app/)  
 > No login. No boring. Just vibes :)
 
 ---
@@ -32,11 +32,11 @@ Live now → [**watermelonverse.vercel.app**](https://watermelonverse.vercel.app
 - React (with Hooks)
 - Tailwind CSS
 - `react-confetti` for sparkly celebrations
--  PNG sprites, CSS animations & ✨bub energy✨
+-  PNG sprites, CSS animations & *bub energy*
 
 ---
 
-## 🚀 Quickstart
+##  Quickstart
 
 ```bash
 git clone https://github.com/yourusername/watermelonverse.git
