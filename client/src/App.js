@@ -1,24 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import GardenGrid from './components/GardenGrid';
 import Confetti from 'react-confetti';
-import './App.css'; // Import custom styles for dancing character
-
-// ✅ Custom hook for screen size
+import './App.css'; 
 function useWindowSize() {
   const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
-
   useEffect(() => {
     const handleResize = () => {
       setSize({ width: window.innerWidth, height: window.innerHeight });
     };
-
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
   return size;
 }
-
 function App() {
   const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState('');
@@ -27,9 +21,7 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [bubMode, setBubMode] = useState(false);
   const [showDancer, setShowDancer] = useState(false);
-
-  const { width, height } = useWindowSize(); // Vanilla screen size hook
-
+  const { width, height } = useWindowSize();
   useEffect(() => {
     if (gardenSize && tasks.length === gardenSize) {
       setShowConfetti(true);
@@ -43,7 +35,6 @@ function App() {
       }, 6000);
     }
   }, [tasks, gardenSize]);
-
   const handleAddTask = () => {
     if (input.trim() === '' || tasks.length >= gardenSize) return;
     const newTask = {
@@ -53,7 +44,6 @@ function App() {
     setTasks([...tasks, newTask]);
     setInput('');
   };
-
   const handleReset = () => {
     setTasks([]);
     setInput('');
@@ -62,7 +52,6 @@ function App() {
     setBubMode(false);
     setShowDancer(false);
   };
-
   const handleStart = (e) => {
     e.preventDefault();
     const num = parseInt(input);
@@ -71,9 +60,7 @@ function App() {
       setInput('');
     }
   };
-
   const toggleDarkMode = () => setDarkMode(!darkMode);
-
   return (
     <div className={`${darkMode ? 'dark' : ''}`}>
       <div className={`min-h-screen p-6 text-center font-sans transition-all
@@ -85,10 +72,9 @@ function App() {
 
         <div className="flex justify-center items-center mb-4">
           <h1 className="text-4xl font-bold text-green-700 dark:text-pink-300">
-            🍉 WatermelonVerse 🍉
+            🍉 Welcome to Nisha's WatermelonVerse 🍉
           </h1>
         </div>
-
         <div className="absolute top-4 right-6 flex space-x-4">
           <button
             onClick={toggleDarkMode}
@@ -97,7 +83,6 @@ function App() {
             {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
           </button>
         </div>
-
         {!gardenSize ? (
           <form onSubmit={handleStart} className="space-y-4 mt-10">
             <p className="text-lg font-medium dark:text-white">
@@ -117,7 +102,7 @@ function App() {
               type="submit"
               className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-all"
             >
-              Start Gardening 🌱
+              Let's Start Gardening
             </button>
           </form>
         ) : (
@@ -150,7 +135,7 @@ function App() {
               <div className="mt-10 animate-bounce flex flex-col items-center">
                 <div className="dancer"></div>
                 <h2 className="text-3xl font-extrabold text-pink-600 dark:text-pink-400 mt-4">
-                  🎉 PROUD OF YOU BUB 🎉
+                  🎉 PROUD OF YOU BUB, YOU DID GREAT 🎉
                 </h2>
               </div>
             )}
@@ -160,5 +145,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

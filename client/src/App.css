@@ -32,8 +32,7 @@
 .dancer {
   width: 120px;
   height: 120px;
-  background-image: url('https://media.tenor.com/4J2dL4d4xL8AAAAi/cute-happy.gif'); /* ✅ working dancing emoji gif */
-  background-size: cover;
+  background-image: url('https://media.tenor.com/4J2dL4d4xL8AAAAi/cute-happy.gif');
   background-position: center;
   animation: dance 1s infinite;
   margin: 0 auto;
