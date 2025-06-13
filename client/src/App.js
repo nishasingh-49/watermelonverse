@@ -1,6 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import GardenGrid from './components/GardenGrid';
 import Confetti from 'react-confetti';
+import './App.css'; // Import custom styles for dancing character
+
+// ✅ Custom hook for screen size
+function useWindowSize() {
+  const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setSize({ width: window.innerWidth, height: window.innerHeight });
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return size;
+}
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -9,18 +26,21 @@ function App() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [bubMode, setBubMode] = useState(false);
-  const [showBubBookPrompt, setShowBubBookPrompt] = useState(false);
+  const [showDancer, setShowDancer] = useState(false);
+
+  const { width, height } = useWindowSize(); // Vanilla screen size hook
 
   useEffect(() => {
     if (gardenSize && tasks.length === gardenSize) {
       setShowConfetti(true);
       setBubMode(true);
-      setShowBubBookPrompt(true);
+      setShowDancer(true);
 
       setTimeout(() => {
         setShowConfetti(false);
         setBubMode(false);
-      }, 5000);
+        setShowDancer(false);
+      }, 6000);
     }
   }, [tasks, gardenSize]);
 
@@ -40,7 +60,7 @@ function App() {
     setGardenSize(null);
     setShowConfetti(false);
     setBubMode(false);
-    setShowBubBookPrompt(false);
+    setShowDancer(false);
   };
 
   const handleStart = (e) => {
@@ -59,10 +79,10 @@ function App() {
       <div className={`min-h-screen p-6 text-center font-sans transition-all
         ${bubMode
           ? 'bg-gradient-to-br from-pink-300 via-rose-200 to-yellow-100 animate-glow'
-          : 'bg-gradient-to-br from-pink-100 via-green-100 to-red-100 dark:from-gray-900 dark:via-black dark:to-gray-800'}
-      `}>
-        {showConfetti && <Confetti />}
-        
+          : 'bg-gradient-to-br from-pink-100 via-green-100 to-red-100 dark:from-gray-900 dark:via-black dark:to-gray-800'}`}
+      >
+        {showConfetti && <Confetti width={width} height={height} />}
+
         <div className="flex justify-center items-center mb-4">
           <h1 className="text-4xl font-bold text-green-700 dark:text-pink-300">
             🍉 WatermelonVerse 🍉
@@ -126,17 +146,12 @@ function App() {
 
             <GardenGrid plants={tasks} totalTiles={gardenSize} />
 
-            {showBubBookPrompt && (
-              <div className="mt-10 animate-bounce">
-                <h2 className="text-3xl font-extrabold text-pink-600 dark:text-pink-400 mb-4">
-                  🎉 BubBook is unlocked! 🎉
+            {showDancer && (
+              <div className="mt-10 animate-bounce flex flex-col items-center">
+                <div className="dancer"></div>
+                <h2 className="text-3xl font-extrabold text-pink-600 dark:text-pink-400 mt-4">
+                  🎉 PROUD OF YOU BUB 🎉
                 </h2>
-                <button
-                  onClick={() => window.location.href = "/bubbook"}
-                  className="px-6 py-3 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition-all text-lg font-semibold"
-                >
-                  Open BubBook 💖
-                </button>
               </div>
             )}
           </>
