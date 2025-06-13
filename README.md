@@ -5,7 +5,7 @@
 Because regular to-do lists are boring.
 Watermelons? Not boring.
 Cute chaos? Even better.
-We built this during an internship to make productivity a little more fun, chaotic, and 🍉 aesthetic and obviously to show my love for watermelonsss teheee ;)
+We built this during an internship to make productivity a little more fun, chaotic, and watermelon aesthetics and obviously to show my love for watermelonsss teheee ;)
 ---
 
 ## What is this?
